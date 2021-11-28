@@ -22,17 +22,18 @@
   <div class="container-fluid border border-dark border-left-0 border-right-0 border-top-0 d-flex justify-content-center">
     <div class="w-75 time-block ">
     <!-- Timeblocks go here -->
-    <div class="row justify-content-center w-100 ">
+    <div id ="hour0" class="row justify-content-center w-100 ">
       <div class="col-1 hour mh-100">
         <p>9AM</p>
       </div>
-      <div class="col-10 past">
+      <div class="col-10 past text-left p-0 position-relative">
+          <input type="text" class="enter-task w-100 h-100 border border-none bg-transparent p-0 position-absolute"/>
       </div>
       <div class="saveBtn col-1 ">
         <i class="fas fa-save"></i>
       </div>
     </div>
-      <div class="row justify-content-center w-100">
+      <div id ="hour1" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>10AM</p>
         </div>
@@ -43,7 +44,7 @@
         </div>
       </div>
 
-      <div class="row justify-content-center w-100">
+      <div id ="hour2" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>11AM</p>
         </div>
@@ -54,7 +55,7 @@
         </div>
       </div>
         
-      <div class="row justify-content-center w-100">
+      <div id ="hour3" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>12PM</p>
         </div>
@@ -65,7 +66,7 @@
         </div>
       </div>
 
-      <div class="row justify-content-center w-100">
+      <div id ="hour4" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>1PM</p>
         </div>
@@ -76,7 +77,7 @@
         </div>
       </div>  
 
-      <div class="row justify-content-center w-100">
+      <div id ="hour5" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>2PM</p>
         </div>
@@ -87,7 +88,7 @@
         </div>
       </div>
         
-      <div class="row justify-content-center w-100">
+      <div id ="hour6" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>3PM</p>
         </div>
@@ -98,7 +99,7 @@
         </div>
       </div>
         
-      <div class="row justify-content-center w-100">
+      <div id ="hour7" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>4PM</p>
         </div>
@@ -109,7 +110,7 @@
         </div>
       </div>
         
-      <div class="row justify-content-center w-100">
+      <div id ="hour8" class="row justify-content-center w-100">
         <div class="col-1 hour mh-100">
           <p>5PM</p>
         </div>
@@ -124,6 +125,7 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src = "script.js"></script>
 </body>
 
 </html>
