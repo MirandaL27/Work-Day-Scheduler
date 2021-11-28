@@ -1,8 +1,6 @@
 //need to load the tasks from local storage into the elements.
 //need to save tasks to localstorage when the user presses the save button.
-//need to periodically run a function that checks what hour it is an whether or not tasks have passed.
 //add ability to change text in the long grey element when clicking on it
-//current day is displayed at the top of the calendar
 
 //task class
 class task{
@@ -100,8 +98,23 @@ setInterval(colorHours,300000);
  
 
 //add event listener that replaces the paragraph element in the hour with an input on focus
+bodyEl.on("click", ".task", function(){
+    var taskEl = $("<input>").addClass("enter-task w-100 h-100 border border-none bg-transparent p-0 position-absolute");
+    taskEl.type = "text";
+    $(this).children().replaceWith(taskEl)
+
+    taskEl.trigger("focus")
+});
 
 //add event listener that replace input element in the hour with a paragraph on blur
+bodyEl.on("blur", ".task", function(){
+    var taskEl = $("<p>").addClass("task-p");
+    $(this).children().replaceWith(taskEl)
+});
+
+
+
+
 
 
 
