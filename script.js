@@ -21,15 +21,31 @@ var currentDayEl = $("#currentDay");
 
 var loadTasks = function(){
     //this function gets the tasks from localStorage and puts them into the tasks array.
-
+    var local = localStorage.getItem("tasks");
+    tasks = JSON.parse(local);
+    return;
 }
 
 var displayTasks = function(){
     //this function uses the tasks array to display the tasks on the screen
+    //loop through the tasks and put the text into the hours. 
+    for(var i; i < tasks.length; i++){
+        var id = "#hour" + tasks.hour;
+        var pEl = $(".task-p").closest(id);
+        pEl.text(tasks.text);
+    }
+    return;
 }
 
-var saveTasks = function(){
+var saveTasks = function(eL){
     //this function uses the tasks array to save the data into localStorage
+    var hourEl = $(eL).parent();
+    var hour = hourEl[0].id.replace("hour", "");
+
+    var pEl = hourEl.find("input");
+    console.log(pEl);
+    //localStorage.setItem("tasks", JSON.stringify(tasks));
+    return;
 }
 
 var getHour = function(hourStr){
@@ -77,16 +93,18 @@ var colorHours = function(){
             taskField.addClass("future");
         }
     }
+    return;
 }
 
 var displayCurrentDay = function(){
     var now = dayjs().format("dddd, MMMM D");
     currentDayEl.text(now);
+    return;
 }
 
 //add event listener to body for save button
-bodyEl.on("click", ".saveBtn", function(){
-    console.log("save button clicked");
+bodyEl.on("click", ".saveBtn", function(event){
+    saveTasks(event.target);
 });
 
 displayCurrentDay();
@@ -112,7 +130,7 @@ bodyEl.on("blur", ".task", function(){
     $(this).children().replaceWith(taskEl)
 });
 
-
+displayTasks();
 
 
 
