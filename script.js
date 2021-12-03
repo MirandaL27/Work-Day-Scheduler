@@ -1,7 +1,3 @@
-//need to load the tasks from local storage into the elements.
-//need to save tasks to localstorage when the user presses the save button.
-//add ability to change text in the long grey element when clicking on it
-
 //task class
 class task{
     text;
@@ -31,7 +27,6 @@ var loadTasks = function(){
 var displayTasks = function(){
     //this function uses the tasks array to display the tasks on the screen
     loadTasks();
-    //console.log(tasks);
     //loop through the tasks and put the text into the hours. 
     for(var i=0; i < tasks.length; i++){
         var id = "#hour" + tasks[i].hour;
