@@ -93,7 +93,7 @@ var colorHours = function(){
     var now = dayjs().format("HH");
 
     for(var i = 0; i < 9 ;i++){
-        var id = "#hour" + i;;
+        var id = "#hour" + i;
         var thisHour = $("p").closest(id).text().trim();
 
         thisHour = getHour(thisHour);
@@ -126,10 +126,28 @@ var displayCurrentDay = function(){
     return;
 }
 
+var clearAllTasks = function(){
+    //loop through all of the hours and delete the text
+    for(var i = 0;i < 9;i++){
+        var id = "#hour" + i;
+        $(id).find("input").val(null);
+    }
+    //clear the tasks array
+    tasks.length = 0;
+    //clear localStorage
+    localStorage.removeItem("tasks");
+    return;
+}
+
 //add event listener to body for save button
 bodyEl.on("click", ".saveBtn", function(event){
     saveTasks(event.target);
 });
+
+bodyEl.on("click","#clear-btn", function(){
+    clearAllTasks();
+    return;
+})
 
 displayCurrentDay();
 colorHours();
