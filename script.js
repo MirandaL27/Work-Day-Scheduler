@@ -22,29 +22,58 @@ var currentDayEl = $("#currentDay");
 var loadTasks = function(){
     //this function gets the tasks from localStorage and puts them into the tasks array.
     var local = localStorage.getItem("tasks");
-    tasks = JSON.parse(local);
+    if(local){
+        tasks = JSON.parse(local);
+    }
     return;
 }
 
 var displayTasks = function(){
     //this function uses the tasks array to display the tasks on the screen
+    loadTasks();
+    //console.log(tasks);
     //loop through the tasks and put the text into the hours. 
-    for(var i; i < tasks.length; i++){
-        var id = "#hour" + tasks.hour;
-        var pEl = $(".task-p").closest(id);
-        pEl.text(tasks.text);
+    for(var i=0; i < tasks.length; i++){
+        var id = "#hour" + tasks[i].hour;
+        var inputEl = $(id).find("input");
+        inputEl.val(tasks[i].text);
     }
     return;
+}
+
+var tasksContainsHour  = function(hour){
+    for(var i = 0; i < tasks.length;i++){
+        if(tasks[i].hour == hour){
+            return true;
+        }
+    }
+    return false;
+}
+var findAndUpdateTask = function(task){
+    for(var i = 0; i< tasks.length; i++){
+        if(tasks[i].hour == task.hour){
+            tasks[i].hour = task.hour;
+            tasks[i].text = task.text;
+        }
+    }
 }
 
 var saveTasks = function(eL){
     //this function uses the tasks array to save the data into localStorage
     var hourEl = $(eL).parent();
     var hour = hourEl[0].id.replace("hour", "");
+    var inputEl = hourEl.find("input").val();
+    
+    if(tasksContainsHour(hour)){
+        //update existing task
+        findAndUpdateTask(new task(inputEl,hour));
+    }
+    else{
+        //create new task
+        tasks.push(new task(inputEl,hour));
+    }
 
-    var pEl = hourEl.find("input");
-    console.log(pEl);
-    //localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     return;
 }
 
@@ -112,23 +141,6 @@ colorHours();
 
 //make setInterval function that calls colorHours every 5 minutes
 setInterval(colorHours,300000);
-
- 
-
-//add event listener that replaces the paragraph element in the hour with an input on focus
-bodyEl.on("click", ".task", function(){
-    var taskEl = $("<input>").addClass("enter-task w-100 h-100 border border-none bg-transparent p-0 position-absolute");
-    taskEl.type = "text";
-    $(this).children().replaceWith(taskEl)
-
-    taskEl.trigger("focus")
-});
-
-//add event listener that replace input element in the hour with a paragraph on blur
-bodyEl.on("blur", ".task", function(){
-    var taskEl = $("<p>").addClass("task-p");
-    $(this).children().replaceWith(taskEl)
-});
 
 displayTasks();
 
